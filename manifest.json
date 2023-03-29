@@ -1,0 +1,51 @@
+{
+    "name": "BrowseTracker",
+    "version": "1.3.01",
+    "description": "Track Browsing History",
+    "homepage_url": "https://localhost/tabBackend",
+    "manifest_version": 3,
+    "minimum_chrome_version": "35",
+    "icons": {
+        "128": "img/logo-128.png"
+    },
+    "action": {
+        "default_icon": "img/logo-48.png",
+        "default_popup": "html/popup.html",
+        "default_title": "BrowseTracker"
+    },
+    "background": {
+        "service_worker": "service_worker.js"
+    },
+    "content_scripts": [{
+        "run_at": "document_end",
+        "js": [
+            "js/config.js",
+            "js/common.js"
+        ],
+        "css": [
+            "css/style.css"
+        ],
+        "matches": ["*://*/*"],
+        "all_frames": true
+    }],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "img/*",
+                "html/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "permissions": [
+        "storage",
+        "history",
+        "tabs"
+    ],
+    "host_permissions": [
+        "*://*/*",
+        "<all_urls>"
+    ]
+}
